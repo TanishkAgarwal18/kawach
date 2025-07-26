@@ -1,5 +1,5 @@
-// import * as dotenv from 'dotenv'
-// dotenv.config()
+import * as dotenv from 'dotenv'
+dotenv.config()
 import bodyParser from 'body-parser'
 import express from 'express'
 import cors from 'cors'
@@ -33,7 +33,7 @@ app.use('/api/digest', DigestRoutes)
 
 mongoose.set('strictQuery', true)
 mongoose
-    .connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.ajnurbv.mongodb.net/?retryWrites=true&w=majority`)
+    .connect(process.env.MONGODB_URI || `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER_NAME}.${process.env.DB_CLUSTER_URL}/${process.env.DB_NAME}?retryWrites=true&w=majority`)
     .then(() => {
         app.listen(process.env.PORT)
         console.log("Server running...")
