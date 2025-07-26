@@ -20,7 +20,7 @@ const signup = async (req, res, next) => {
             message: commons.invalid_params,
             format: msg.format
         })
-        return
+        return next()
     }
     
     try { existingUser = await User.findOne({email: email}) }
